@@ -41,9 +41,9 @@ rebalance cadence, turnover & cost estimation, factsheet PDFs, and governance no
 **How to run**
 ```bash
 python -m venv .venv && .\.venv\Scripts\activate
-pip install -r requirements.txt
-python run.py  # generates weights & a factsheet sample
-pytest -q      # CI-quality smoke tests
+pip install -e .
+python run.py      # generates weights + factsheet
+pytest -q
 
 
 ## Installation
