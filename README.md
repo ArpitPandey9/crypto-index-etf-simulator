@@ -19,7 +19,7 @@ The current public snapshot does **not** contain a complete end-to-end crypto in
 - there is no tracked `run.py`
 - there is no behavioral test suite
 - HRP weighting, volatility targeting, transaction-cost modeling, tracking-error analysis, factsheet generation, and governance workflows are not implemented in the tracked source shown here
-- the repository should not be described as production or institutional-grade
+- the repository should not be described as a production-ready institutional system
 
 The SPY notebook, chart, and CSV are retained as historical prototype artifacts from earlier ETF-risk exploration.
 
