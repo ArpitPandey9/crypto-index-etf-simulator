@@ -1,0 +1,34 @@
+name: Static validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Parse Python source
+        run: python -c "import ast,pathlib; [ast.parse(p.read_text(encoding='utf-8-sig'), filename=str(p)) for p in pathlib.Path('src').rglob('*.py')]"
+
+      - name: Validate notebook JSON
+        run: python -c "import json; json.load(open('spy_analyzer.ipynb', encoding='utf-8-sig'))"
+
+      - name: Check claim hygiene
+        run: |
+          ! grep -Eiq 'S&P Global|Wall Street|institutional-grade|CI tests|python run.py|pytest -q' README.md

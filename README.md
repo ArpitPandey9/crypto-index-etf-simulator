@@ -1,51 +1,52 @@
-# S&P 500 ETF Risk Analyzer 🔍📉
+# Crypto Index / ETF Simulator — Early Prototype
 
-**Solves S&P Global Pain Point:** Automated institutional-grade ETF risk reporting
+Small public prototype containing early index-weighting helpers, an eligibility-rule scaffold, and historical ETF-analysis artifacts.
 
-## Features
-- 📊 Dynamic risk metric calculation (volatility, max drawdown)
-- 📅 Date range flexibility
-- 🔥 Wall Street-quality visualization
-- 📈 Outputs PDF-ready report
+## What is implemented
 
-## S&P Global Applications
-- Daily ETF surveillance reports
-- Portfolio stress-testing
-- Client risk briefing automation
+The tracked Python source currently provides:
 
+- `UniverseRule`, a dataclass carrying minimum price, volume, and trading-history thresholds
+- `cap_weight()`, a basic market-cap weighting helper
+- `capped_10()`, an experimental capped-weight helper
+- an `eligible()` function scaffold
 
-## About
+## What is not yet implemented
 
-**What this is:** A rules-based **index/ETF simulator** for digital assets/crypto.
-It converts research signals and eligibility rules into **index-grade** methods:
-universe → liquidity/eligibility screens → weighting/caps → monthly rebalance →
-**turnover & cost** reporting → **factsheet** and **methodology** artifacts.
+The current public snapshot does **not** contain a complete end-to-end crypto index engine. In particular:
 
-**S&P Alignment:** **DJI (Index R&D)** — mirrors index methodology development:
-eligibility/liquidity thresholds, weighting schemes (cap-weight, capped, HRP),
-rebalance cadence, turnover & cost estimation, factsheet PDFs, and governance notes.
+- `eligible()` is still a stub and currently returns an empty list
+- there is no tracked `run.py`
+- there is no behavioral test suite
+- HRP weighting, volatility targeting, transaction-cost modeling, tracking-error analysis, factsheet generation, and governance workflows are not implemented in the tracked source shown here
+- the repository should not be described as production or institutional-grade
 
-**Key features**
-- Universe + eligibility/liquidity screens (min price, volume, days traded)
-- Weighting: cap-weight, capped (e.g., 10%), HRP; optional **volatility targeting**
-- Monthly rebalance with **buffers**; turnover & after-cost performance
-- **Tracking error** vs baseline; **IC/IR** for any predictive inputs
-- **Factsheet generator** (charts + table), **methodology.md**, **governance checklist**
-- Reproducible env, seeds, CI tests; no secrets committed
+The SPY notebook, chart, and CSV are retained as historical prototype artifacts from earlier ETF-risk exploration.
 
-**Metrics we track**
-- Strategy: Sharpe/Sortino/Calmar (after costs), Max DD, Turnover
-- Index: Eligibility pass rate, Rebalance cost estimate, **Tracking error**
-- Forecast inputs (optional): IC/IR, OOS RMSE/MAE (walk-forward)
+## Validation
 
-**How to run**
-```bash
-python -m venv .venv && .\.venv\Scripts\activate
-pip install -e .
-python run.py      # generates weights + factsheet
-pytest -q
+Automated validation checks:
 
+- Python source syntax
+- notebook JSON validity
+- public documentation for unsupported institutional or employer-specific claims
 
-## Installation
-```bash
-pip install -r requirements.txt
+It does not claim behavioral correctness for the incomplete simulator.
+
+## Repository contents
+
+```text
+src/indexsim/screens.py
+src/indexsim/weighting.py
+spy_analyzer.ipynb
+spy_analysis.png
+spy_risk_report.csv
+```
+
+## Limitations
+
+This repository is an early research prototype, not an investment recommendation, official index methodology, production financial system, or representation of any employer or client.
+
+## License
+
+See `LICENSE`.
